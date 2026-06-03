@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { Volume2, VolumeX, Play, Pause } from "lucide-react";
 import { feelingCards, photos } from "./data.js";
-import birthdaySong from "./music/Jaane Kyun LYRICS I Borora Music.mp3";
+import birthdaySong from "./music/birthday-song.mp3";
 
 gsap.registerPlugin(ScrollTrigger);
 
