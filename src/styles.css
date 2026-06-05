@@ -1409,7 +1409,7 @@ h3 {
     display: grid;
     align-items: start;
     min-height: 100svh;
-    padding: 18svh 1rem 4.5rem;
+    padding: 18svh 1rem 13rem;
     text-align: left;
     background: #192319;
   }
