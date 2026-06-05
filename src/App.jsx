@@ -3,9 +3,9 @@ import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motio
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
-import { Volume2, VolumeX, Play, Pause } from "lucide-react";
+import { Play } from "lucide-react";
+import MusicPlayer from "./components/MusicPlayer.jsx";
 import { feelingCards, photos } from "./data.js";
-import birthdaySong from "./music/birthday-song.mp3";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,53 +29,6 @@ function useSmoothScroll() {
       lenis.destroy();
     };
   }, []);
-}
-
-function useAmbientSound() {
-  const audioRef = useRef(null);
-  const [enabled, setEnabled] = useState(true);
-
-  const stop = () => {
-    audioRef.current?.pause();
-    setEnabled(false);
-  };
-
-  const start = async () => {
-    if (!audioRef.current) return;
-
-    try {
-      await audioRef.current.play();
-      setEnabled(true);
-    } catch {
-      setEnabled(false);
-    }
-  };
-
-  const toggle = () => {
-    if (enabled) {
-      stop();
-      setEnabled(false);
-    } else {
-      start();
-    }
-  };
-
-  useEffect(() => {
-    const audio = new Audio(birthdaySong);
-    audio.loop = true;
-    audio.volume = 0.42;
-    audio.preload = "auto";
-    audioRef.current = audio;
-
-    start();
-
-    return () => {
-      audio.pause();
-      audioRef.current = null;
-    };
-  }, []);
-
-  return { enabled, start, toggle };
 }
 
 function CursorGlow() {
@@ -200,14 +153,14 @@ function LoadingIntro({ onComplete }) {
           }}
           transition={{ duration: 1.15, delay: 0.55, ease: "easeOut" }}
         >
-          Some birthdays feel like a quiet thank-you...
+          I want to say thank-you...Moti
         </motion.p>
         <motion.p
           initial={{ opacity: 0, y: 22, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 1.15, delay: 1.1, ease: "easeOut" }}
         >
-          Today is for someone who made life feel lighter.
+          This is for you to realise your value in my life.
         </motion.p>
       </div>
     </motion.div>
@@ -235,9 +188,10 @@ function Hero({ onBegin }) {
         transition={{ duration: 1.5, delay: 0.35 }}
       >
         <p className="eyebrow">A birthday letter for my best friend</p>
+        <h2>To one of the most important people in my life,</h2>
         <h1>
-          To one of the most important people in my life,
-          <span>Happy Birthday Gayatri</span>
+          
+          <span>Happy Birthday Gayatri </span>
         </h1>
         <p className="subtitle">
           You stayed beside me in the moments
@@ -397,18 +351,8 @@ function FinalMessage() {
   );
 }
 
-function MusicControl({ enabled, onToggle }) {
-  return (
-    <button className="music-control" onClick={onToggle} type="button" aria-label="Toggle ambient music">
-      {enabled ? <Volume2 size={19} /> : <VolumeX size={19} />}
-      {enabled ? <Pause size={15} /> : <Play size={15} />}
-    </button>
-  );
-}
-
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const sound = useAmbientSound();
   useSmoothScroll();
 
   useEffect(() => {
@@ -442,7 +386,6 @@ export default function App() {
   }, []);
 
   const beginJourney = () => {
-    sound.start();
     document.getElementById("story")?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -459,7 +402,7 @@ export default function App() {
         <BirthdayReveal />
         <FinalMessage />
       </main>
-      <MusicControl enabled={sound.enabled} onToggle={sound.toggle} />
+      <MusicPlayer />
     </>
   );
 }
