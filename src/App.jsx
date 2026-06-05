@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { Play } from "lucide-react";
+import GiftButton from "./components/GiftButton.jsx";
 import MusicPlayer from "./components/MusicPlayer.jsx";
 import { feelingCards, photos } from "./data.js";
 
@@ -402,6 +403,7 @@ export default function App() {
         <BirthdayReveal />
         <FinalMessage />
       </main>
+      <GiftButton />
       <MusicPlayer />
     </>
   );

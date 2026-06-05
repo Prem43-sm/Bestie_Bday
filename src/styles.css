@@ -622,6 +622,217 @@ h3 {
   }
 }
 
+.gift-surprise-button {
+  position: fixed;
+  right: clamp(0.9rem, 2vw, 1.35rem);
+  bottom: calc(clamp(0.9rem, 2vw, 1.35rem) + 72px);
+  z-index: 79;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.72rem;
+  width: clamp(320px, 25vw, 380px);
+  height: 78px;
+  padding: 0 1.15rem;
+  border: 1px solid rgba(242, 215, 161, 0.46);
+  border-radius: 999px;
+  color: #fffaf1;
+  background:
+    linear-gradient(135deg, rgba(248, 245, 239, 0.2), rgba(156, 175, 136, 0.13)),
+    rgba(25, 35, 25, 0.54);
+  box-shadow:
+    0 22px 70px rgba(7, 10, 8, 0.34),
+    0 0 36px rgba(242, 215, 161, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(22px) saturate(1.08);
+  cursor: pointer;
+  animation:
+    gift-float 4.2s ease-in-out infinite,
+    gift-glow 3.6s ease-in-out infinite;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.gift-surprise-button:hover {
+  box-shadow:
+    0 24px 76px rgba(7, 10, 8, 0.36),
+    0 0 44px rgba(242, 215, 161, 0.27),
+    inset 0 1px 0 rgba(255, 255, 255, 0.27);
+}
+
+.gift-surprise-icon {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  filter: drop-shadow(0 0 12px rgba(242, 215, 161, 0.34));
+}
+
+.gift-surprise-copy {
+  display: grid;
+  gap: 0.18rem;
+  min-width: 0;
+  text-align: left;
+}
+
+.gift-surprise-copy span {
+  overflow: hidden;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gift-surprise-copy small {
+  color: rgba(242, 215, 161, 0.8);
+  font-size: 0.68rem;
+  font-weight: 500;
+  line-height: 1;
+  animation: gift-tap-hint 2.4s ease-in-out infinite;
+}
+
+.gift-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: rgba(7, 10, 8, 0.42);
+  backdrop-filter: blur(16px);
+}
+
+.gift-letter-modal {
+  position: relative;
+  width: min(520px, 90vw);
+  max-height: min(76svh, 620px);
+  overflow: hidden;
+  border: 1px solid rgba(242, 215, 161, 0.36);
+  border-radius: 22px;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 18% 12%, rgba(242, 215, 161, 0.2), transparent 30%),
+    radial-gradient(circle at 86% 92%, rgba(156, 175, 136, 0.16), transparent 28%),
+    linear-gradient(135deg, rgba(255, 250, 241, 0.96), rgba(248, 245, 239, 0.92));
+  box-shadow:
+    0 28px 80px rgba(7, 10, 8, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.78);
+}
+
+.gift-letter-modal::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  opacity: 0.18;
+  background-image:
+    radial-gradient(rgba(45, 59, 47, 0.38) 0.45px, transparent 0.45px),
+    radial-gradient(rgba(139, 133, 125, 0.28) 0.35px, transparent 0.35px);
+  background-position:
+    0 0,
+    12px 15px;
+  background-size:
+    24px 24px,
+    29px 29px;
+}
+
+.gift-letter-close {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(45, 59, 47, 0.14);
+  border-radius: 999px;
+  color: rgba(45, 59, 47, 0.76);
+  background: rgba(248, 245, 239, 0.66);
+  cursor: pointer;
+}
+
+.gift-letter-scroll {
+  position: relative;
+  z-index: 1;
+  max-height: min(76svh, 620px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: clamp(2.4rem, 6vw, 3.2rem) clamp(1.35rem, 5vw, 2.6rem) clamp(1.6rem, 5vw, 2.4rem);
+  overscroll-behavior: contain;
+  scrollbar-color: rgba(91, 119, 112, 0.5) rgba(45, 59, 47, 0.08);
+  scrollbar-width: thin;
+}
+
+.gift-letter-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.gift-letter-scroll::-webkit-scrollbar-track {
+  background: rgba(45, 59, 47, 0.08);
+  border-radius: 999px;
+}
+
+.gift-letter-scroll::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: linear-gradient(var(--sage), var(--river));
+}
+
+.gift-letter-scroll h2 {
+  margin: 0 2rem 1.2rem 0;
+  color: var(--ink);
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2rem, 7vw, 3rem);
+  line-height: 0.95;
+}
+
+.gift-letter-scroll p {
+  margin: 0.85rem 0 0;
+  color: rgba(45, 59, 47, 0.82);
+  font-size: clamp(0.88rem, 2.5vw, 1rem);
+  line-height: 1.72;
+}
+
+@keyframes gift-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -5px;
+  }
+}
+
+@keyframes gift-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 22px 70px rgba(7, 10, 8, 0.34),
+      0 0 30px rgba(242, 215, 161, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  }
+  50% {
+    box-shadow:
+      0 26px 78px rgba(7, 10, 8, 0.37),
+      0 0 48px rgba(242, 215, 161, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.27);
+  }
+}
+
+@keyframes gift-tap-hint {
+  0%,
+  100% {
+    opacity: 0.42;
+    transform: translateY(1px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .story-section,
 .gallery-section,
 .feelings-section {
@@ -1172,6 +1383,22 @@ h3 {
   .music-control {
     right: 0.75rem;
     bottom: 0.75rem;
+  }
+
+  .gift-surprise-button {
+    width: min(320px, calc(100vw - 1.5rem));
+    height: 72px;
+    gap: 0.62rem;
+    padding: 0 1rem;
+  }
+
+  .gift-surprise-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .gift-surprise-copy span {
+    font-size: 0.86rem;
   }
 
   .playlist-list {
